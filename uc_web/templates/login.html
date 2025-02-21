@@ -1,0 +1,104 @@
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인</title>
+<style>
+    table {
+        width: 280px;
+        height: 250px;
+        margin: auto;
+        font-size: 15px;
+        }
+    input[type="text"], input[type="password"] {
+        width: 250px;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(233,233,233);
+    }
+    .btn {
+        width: 263px;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(164, 199, 255);
+    }
+    .btn:active {
+        width: 263px;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(61, 135, 255);
+    }
+    a {
+        font-size: 12px;
+        color: darkgray;
+        text-decoration-line: none;
+       
+    }
+    .join {
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<form>
+    <table>
+    <tr>
+        <td><h2>로그인</h2></td>
+    </tr>
+    <tr>
+        <td><input type="text" placeholder="ID" id="id"></td>
+    </tr>
+    <tr>
+        <td><input type="password" placeholder="Password" id="pwd" ></td>
+    </tr>
+    <tr>
+       <td><input type="checkbox"> 로그인 정보 저장</td>
+    </tr>
+    <tr>
+        <td><input type="button" value="Sign in" class="btn" id="login"></td>
+    </tr>
+    <tr>
+        <td class="join"><a href="register">회원가입</a></td>
+    </tr>
+    </table>
+</form>
+</body>
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script>
+    const login = () => {
+        const id = $("#id").val();
+        const pwd = $("#pwd").val();
+
+        $.ajax({
+            url: `login_action?id=${id}&pwd=${pwd}`,
+            success : function(data, status, xhr) {  
+                if(data.success == true) {
+                    alert("로그인 성공")
+                    console.log(2);
+                    window.location = "/"
+                } else {
+                    alert("로그인 실패")
+                }
+            },
+        });
+    }
+    
+    $("#login").click(login)
+</script>
+</html>

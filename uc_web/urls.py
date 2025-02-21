@@ -17,6 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from uc_web import views
+
 urlpatterns = [
+    path('', views.main_page),
+
+    path('login', views.login_page),
+    path('login_action', views.login_action),
+
+    path('register',views.register_page),
+    
     path('admin/', admin.site.urls),
 ]
