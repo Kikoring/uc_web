@@ -17,15 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from uc_web import views
+from uc_web import pages, api
 
 urlpatterns = [
-    path('', views.main_page),
+    path('', pages.main),
 
-    path('login', views.login_page),
-    path('login_action', views.login_action),
+    path('add-post', pages.add_post),
+    path('posts/<int:id>', pages.post_detail),
 
-    path('register',views.register_page),
-    
+    path('login', pages.login),
+    path('register', pages.register),
+
+    path('api/auth/login', api.login),
+    path('api/auth/register', api.register),
+    path('api/auth/csrf-token', api.csrf_token),
+
+    path('api/posts', api.posts),
+
     path('admin/', admin.site.urls),
 ]

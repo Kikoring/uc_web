@@ -67,7 +67,7 @@
        <td><input type="checkbox"> 로그인 정보 저장</td>
     </tr>
     <tr>
-        <td><input type="button" value="Sign in" class="btn" id="login"></td>
+        <td><input type="button" value="Sign in" class="btn" id="login"21></td>
     </tr>
     <tr>
         <td class="join"><a href="register">회원가입</a></td>
@@ -81,16 +81,31 @@
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
   crossorigin="anonymous"></script>
 <script>
+    let csrfToken = "";
+
+    // CSRF 토큰 가져오기
+    $(document).ready(function() {
+        $.get("/api/auth/csrf-token", function(data) {
+            csrfToken = data.csrfToken;
+        });
+    });
+
     const login = () => {
         const id = $("#id").val();
         const pwd = $("#pwd").val();
 
         $.ajax({
-            url: `login_action?id=${id}&pwd=${pwd}`,
+            url: '/api/auth/login',
+            type: "POST",
+            data: {
+                id: id,
+                pwd: pwd,
+                csrfmiddlewaretoken: csrfToken,
+            },
+            dataType: "json",
             success : function(data, status, xhr) {  
                 if(data.success == true) {
                     alert("로그인 성공")
-                    console.log(2);
                     window.location = "/"
                 } else {
                     alert("로그인 실패")
@@ -98,7 +113,7 @@
             },
         });
     }
-    
+
     $("#login").click(login)
 </script>
 </html>

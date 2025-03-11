@@ -8,6 +8,13 @@
     <body>
         <p>uc inside.</p>
         <hr>
-        <p>현재시각 : {{now}}</p>
+        <a href="/add-post">게시물작성</a>
+
+        {% for memo in memos %}
+            <a href="/posts/{{ memo.id }}" style="display: flex;">
+                <p style="margin: 2px;">{{ memo.id }}</p>
+                <p style="margin: 2px;">{{ memo.title }}</p>
+            </a>
+        {% endfor %}
     </body>
 </html>
