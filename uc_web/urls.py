@@ -25,10 +25,10 @@ urlpatterns = [
     path('add-post', pages.add_post),
     path('posts/<int:id>', pages.post_detail),
 
-    path('login', pages.login),
+    path('sign-in', pages.sign_in),
     path('register', pages.register),
 
-    path('api/auth/login', api.login),
+    path('api/auth/sign-in', api.sign_in),
     path('api/auth/register', api.register),
     path('api/auth/csrf-token', api.csrf_token),
 
